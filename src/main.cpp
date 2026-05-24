@@ -23,7 +23,7 @@ struct AtoBProductFlow
     ProductService* product;
 };
 
-std::vector<unsigned long int> CompaniesUid;
+std::vector<unsigned long int> CompaniesUid = {};
 
 unsigned long int generate_random_unsigned_long_int()
 {
@@ -51,8 +51,8 @@ bool IsElemIntoVect(std::vector<T> v, T el)
 void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<AtoBProductFlow>& SCRelations)
 {
     CompanyStruct Company1;
-    //long unsigned int uid1 = generate_random_unsigned_long_int();
-    long unsigned int uid1 = 1001;
+    long unsigned int uid1 = generate_random_unsigned_long_int();
+    //long unsigned int uid1 = 1001;
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid1))
     {
         Company1.uid = uid1;
@@ -67,11 +67,11 @@ void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<Ato
     CompaniesList.push_back(Company1);
 
     CompanyStruct Company2;
-    //long unsigned int uid2 = generate_random_unsigned_long_int();
-    long unsigned int uid2 = 1002;
+    long unsigned int uid2 = generate_random_unsigned_long_int();
+    //long unsigned int uid2 = 1002;
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid2))
     {
-        Company1.uid = uid2;
+        Company2.uid = uid2;
         CompaniesUid.push_back(uid2);
     }
     Company2.name = "MegaCorpProductionBranch";
@@ -83,11 +83,11 @@ void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<Ato
     CompaniesList.push_back(Company2);
 
     CompanyStruct Company3;
-    //long unsigned int uid3 = generate_random_unsigned_long_int();
-    long unsigned int uid3 = 1003;
+    long unsigned int uid3 = generate_random_unsigned_long_int();
+    //long unsigned int uid3 = 1003;
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid3))
     {
-        Company1.uid = uid3;
+        Company3.uid = uid3;
         CompaniesUid.push_back(uid3);
     }
     Company3.name = "MegaCorpDistributionBranch";
@@ -114,11 +114,15 @@ void EcsCreateCompaniesHierarchiesAndProductsSC()
     std::vector<AtoBProductFlow> SCRelations;
     GetCompaniesInfo(CompaniesList, SCRelations);
 
+    std::cout << "EcsCreateCompaniesHierarchiesAndProductsSC:" << std::endl;
+
     // https://www.flecs.dev/flecs/md_docs_2EntitiesComponents.html
     for(CompanyStruct Company : CompaniesList)
     {
         ecs_entity_t e_id = Company.uid;
+        std::cout << "e_id= " << e_id << std::endl;
         flecs::entity e = ecs.make_alive(e_id);
+        std::cout << "ecs_is_valid(ecs, e)= " << ecs_is_valid(ecs, e) << std::endl;
         std::string company_name = Company.name;
         e.set_name(company_name.c_str());
         //flecs::entity e = ecs.entity(company_name.c_str());
@@ -132,6 +136,7 @@ void EcsCreateCompaniesHierarchiesAndProductsSC()
             ecs_entity_t parent_id = parent.id(); // Get the parent_id
             e.child_of(parent); // Set the entity as child of the parent
         }
+        std::cout << std::endl;
     }
 
     ecs.each([](flecs::entity e, GeographicalPosition& gp, BalanceSheet& bs)
