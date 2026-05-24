@@ -51,7 +51,8 @@ bool IsElemIntoVect(std::vector<T> v, T el)
 void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<AtoBProductFlow>& SCRelations)
 {
     CompanyStruct Company1;
-    long unsigned int uid1 = generate_random_unsigned_long_int();
+    //long unsigned int uid1 = generate_random_unsigned_long_int();
+    long unsigned int uid1 = 1001;
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid1))
     {
         Company1.uid = uid1;
@@ -66,7 +67,8 @@ void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<Ato
     CompaniesList.push_back(Company1);
 
     CompanyStruct Company2;
-    long unsigned int uid2 = generate_random_unsigned_long_int();
+    //long unsigned int uid2 = generate_random_unsigned_long_int();
+    long unsigned int uid2 = 1002;
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid2))
     {
         Company1.uid = uid2;
@@ -81,7 +83,8 @@ void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<Ato
     CompaniesList.push_back(Company2);
 
     CompanyStruct Company3;
-    long unsigned int uid3 = generate_random_unsigned_long_int();
+    //long unsigned int uid3 = generate_random_unsigned_long_int();
+    long unsigned int uid3 = 1003;
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid3))
     {
         Company1.uid = uid3;
