@@ -25,12 +25,12 @@ struct AtoBProductFlow
 
 std::vector<unsigned long int> CompaniesUid = {};
 
-unsigned long int generate_random_unsigned_long_int()
+unsigned long int generate_random_unsigned_long_int(long unsigned int min, long unsigned int max)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<unsigned long int> distrib(0, 100000000000);
-    unsigned long int randomValue = distrib(gen);
+    std::uniform_int_distribution<unsigned long int> distrib(min, max);
+    long unsigned int randomValue = distrib(gen);
     return randomValue;
 }
 
@@ -50,9 +50,12 @@ bool IsElemIntoVect(std::vector<T> v, T el)
 
 void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<AtoBProductFlow>& SCRelations)
 {
+    long unsigned int minlui = 0;
+    long unsigned int maxlui = 100000000000;
+
     CompanyStruct Company1;
-    long unsigned int uid1 = generate_random_unsigned_long_int();
-    //long unsigned int uid1 = 1001;
+    long unsigned int uid1 = generate_random_unsigned_long_int(minlui, maxlui);
+
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid1))
     {
         Company1.uid = uid1;
@@ -67,8 +70,8 @@ void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<Ato
     CompaniesList.push_back(Company1);
 
     CompanyStruct Company2;
-    long unsigned int uid2 = generate_random_unsigned_long_int();
-    //long unsigned int uid2 = 1002;
+    long unsigned int uid2 = generate_random_unsigned_long_int(minlui, maxlui);
+
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid2))
     {
         Company2.uid = uid2;
@@ -83,8 +86,8 @@ void GetCompaniesInfo(std::vector<CompanyStruct>& CompaniesList, std::vector<Ato
     CompaniesList.push_back(Company2);
 
     CompanyStruct Company3;
-    long unsigned int uid3 = generate_random_unsigned_long_int();
-    //long unsigned int uid3 = 1003;
+    long unsigned int uid3 = generate_random_unsigned_long_int(minlui, maxlui);
+
     if (!IsElemIntoVect<long unsigned int>(CompaniesUid, uid3))
     {
         Company3.uid = uid3;
