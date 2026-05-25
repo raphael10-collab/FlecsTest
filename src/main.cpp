@@ -25,7 +25,7 @@ struct AtoBProductFlow
 
 std::vector<unsigned long int> CompaniesUid = {};
 
-unsigned long int generate_random_unsigned_long_int(long unsigned int min, long unsigned int max)
+long unsigned int generate_random_unsigned_long_int(long unsigned int min, long unsigned int max)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
