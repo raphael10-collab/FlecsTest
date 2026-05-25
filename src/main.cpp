@@ -29,7 +29,6 @@ unsigned long int generate_random_unsigned_long_int()
 {
     std::random_device rd;
     std::mt19937 gen(rd());
-    //std::uniform_int_distribution<unsigned long int> distrib(0, ULONG_MAX );
     std::uniform_int_distribution<unsigned long int> distrib(0, 100000000000);
     unsigned long int randomValue = distrib(gen);
     return randomValue;
